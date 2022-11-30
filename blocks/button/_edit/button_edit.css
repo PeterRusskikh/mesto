@@ -1,0 +1,15 @@
+.button_edit {
+	margin: 5px 0px 0px 18px;
+    background-color: black;
+    background-image: url(../../../images/Edit-Button.svg);
+	width: 24px;
+    height: 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-style: none;
+    align-self: center;
+}
+.button_edit:hover {
+	opacity: 0.6;
+	cursor: pointer;
+}
