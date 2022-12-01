@@ -3,6 +3,7 @@
 	height: 73px;
 	margin: 45px auto 0;
 	border-bottom: 1px solid #545454;
+	position: relative;
 }
 @media screen and (max-width: 440px) {
 	.header {

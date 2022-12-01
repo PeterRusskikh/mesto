@@ -1,0 +1,20 @@
+.popup__name-profile {
+	margin-top: 30px;
+	width: 354px;
+	height: 27px;
+	border-style: none;
+	opacity: 0.2;
+	border-bottom: 1px solid #000000;
+}
+.popup__name-profile::placeholder {
+	color: black;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16.94px;
+}
+@media screen and (max-width: 555px) {
+	.popup__name-profile {
+		width: 238px;
+		margin-top: 75px;
+	}
+}
