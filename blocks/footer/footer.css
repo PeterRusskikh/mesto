@@ -2,6 +2,16 @@
 	margin: 66px auto 0;
 	padding-bottom: 60px;
 	max-width: 880px;
-	min-width: 320px;
-
+	min-width: 250px;
+}
+@media screen and (max-width: 917px){
+	.footer {
+    padding: 0 19px 60px;
+}
+}
+@media screen and (max-width: 440px){
+	.footer {
+		margin-top: 48px;
+    	padding: 0 19px 36px;
+}
 }
