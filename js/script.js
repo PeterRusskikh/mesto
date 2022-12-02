@@ -1,10 +1,27 @@
-let popupOpened = document.querySelector('.popup_opened');
-let popup = document.querySelector('.popup');
-let buttonAdd = document.querySelector('.button_add');
-let buttonClose = document.querySelector('.button_close');
+const buttonAdd = document.querySelector('.button_add');
+const popup = document.querySelector('.popup');
+const buttonClose = document.querySelector('.button_close');
+const body = document.querySelector('.body');
 
-function openPop() {
-
+function openPopup() {
+	popup.classList.add('popup_opened');
+}
+function closePopup() {
+	event.preventDefault();
+	popup.classList.remove('popup_opened');
 }
 
-buttonAdd.addEventListener('click', openPop);
+
+buttonAdd.addEventListener('click', openPopup);
+buttonClose.addEventListener('click', closePopup);
+
+popup.addEventListener('click', function (event) {
+	if (event.defaultPrevented) {
+		closePopup();
+	}
+});
+document.querySelector('.body').addEventListener('click', function (event) {
+	event.preventDefault();
+})
+
+
