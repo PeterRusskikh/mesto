@@ -70,12 +70,6 @@ buttonSave.addEventListener('click', handleFormSubmit);
 buttonSave.addEventListener('submit', handleFormSubmit);
 
 
-// Лайк active ---------------------------------------------------
-
-const buttonLikeActive = document.querySelectorAll('.button_like');
-
-
-
 
 
 

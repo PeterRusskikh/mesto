@@ -8,10 +8,13 @@
     background-repeat: no-repeat;
     border-style: none;
     align-self: center;
-
 }
 .button_like:hover {
 	opacity: 0.5;
 	cursor: pointer;
+}
+.button_like:active {
+    opacity: 1;
+	background-image: url(../../../../images/icon-button/Like_active-Button.svg);
 }
 
