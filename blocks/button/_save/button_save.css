@@ -13,6 +13,7 @@
 }
 .button_save:hover {
 	opacity: 0.8;
+	cursor: pointer;
 }
 @media screen and (max-width: 555px) {
 	.button_save {
