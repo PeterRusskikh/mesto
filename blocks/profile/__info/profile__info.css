@@ -1,9 +1,11 @@
 .profile__info {
 	margin: auto 30px;
+	display: flex;
 }
 @media screen and (max-width: 555px) {
 	.profile__info {
 		margin: 26px auto 0;
+		justify-content: center;
 	}
 }
 @media screen and (max-width: 440px) {

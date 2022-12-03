@@ -1,0 +1,23 @@
+	.button_like_active {
+		margin-right: 5px;
+		width: 22px;
+		height: 19px;
+		background-color: white;
+		background-image: url(../../../../images/icon-button/Like_active-Button.svg);
+		background-position: center;
+		background-repeat: no-repeat;
+		border-style: none;
+		align-self: center;
+	}
+	.button_like_active:hover {
+		cursor: pointer;
+	}
+	@media screen and (max-width: 440px) {
+		.button_like_active  {
+			margin: -30px 0px 0px 10px;
+			width: 18px;
+			height: 18px;
+			background-size: 8px;
+		}
+	}
+

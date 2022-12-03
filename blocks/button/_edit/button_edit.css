@@ -1,7 +1,7 @@
 .button_edit {
-	margin: 5px 0px 0px 18px;
+	margin: -20px 0px 0px 18px;
     background-color: black;
-    background-image: url(../../../images/Edit-Button.svg);
+    background-image: url(../../../images/icon-button/Edit-Button.svg);
 	width: 24px;
     height: 24px;
     background-position: center;
@@ -15,7 +15,7 @@
 }
 @media screen and (max-width: 440px) {
 	.button_edit  {
-        margin: -5px 0px 0px 10px;
+        margin: -30px 0px 0px 10px;
         width: 18px;
         height: 18px;
         background-size: 8px;

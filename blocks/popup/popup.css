@@ -1,23 +1,10 @@
 .popup {
-	width: 430px;
-	height: 330px;
-	color: black;
-	background-color: white;
-	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-	border-radius: 10px;
-	position: relative;
-	position: absolute;
-	left: 50%;
-	margin-left: -215px;
-	top: 50%;
-	margin-top: -215px;
-	position: fixed;
-	display: none;
-}
-@media screen and (max-width: 555px) {
-	.popup{
-		max-width: 282px;
-		margin-left: -141px;
-		margin-top: -141px;
-	}
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+opacity: 0;
+z-index: -1;
+visibility: hidden;
+display: flex;
 }
