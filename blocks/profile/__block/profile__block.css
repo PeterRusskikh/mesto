@@ -1,5 +1,6 @@
 .profile__block {
 	display: flex;
+	word-break:break-all;
 }
 @media screen and (max-width: 555px) {
 	.profile__block {

@@ -1,4 +1,4 @@
-.button_close {
+.button__close {
 	background: linear-gradient(to right, #303d87 100%, rgb(0 0 0 / 0) 0px);
     background-image: url(../../../images/icon-button/Close-Button.svg);
 	width: 32px;
@@ -11,13 +11,11 @@
     top: -35px;
     border-style: none;
 }
-
-.button_close:hover {
+.button__close:hover {
 	opacity: 0.6;
-	cursor: pointer;
 }
 @media screen and (max-width: 555px) {
-	.button_close{
+	.button__close{
         right: 0px;
         top: -36px;
         width: 20px;

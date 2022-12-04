@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script defer src="js/script.js"></script>
     <link rel="stylesheet" href="pages/index.css">
     <title>Mesto</title>
   </head>
@@ -13,7 +12,7 @@
       <img src="./images/logo.svg" alt="Логотип" class="header__logo">
     </header>
     <main class="main">
-      <section class="profile">
+      <section class="profile" aria-label="profile">
         <div class="profile__block">
           <img class="profile__avatar" src="./images/Avatar.jpg" alt="Аватар">
           <div class="profile__info">
@@ -21,55 +20,54 @@
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <p class="profile__job">Исследователь океана</p>            
             </div>
-            <button class="button button_edit" type="button"></button>
+            <button class="button button__edit" type="button"></button>
           </div>
         </div>
-        <button class="button button_add" type="button"></button>
+        <button class="button button__add" type="button"></button>
       </section>
-      <section class="elements">
-        <div class="element">
+      <section class="elements" aria-label="elements">
+        <article class="element">
           <img src="./images/pictures/Karachaevsk.jpg" alt="Карачаевск" class="element__image">
           <div class="element__block">
             <h2 class="element__title">Карачаевск</h2>
-            <button class="button button_like" type="button"></button>
+            <button class="button button__like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img src="./images/pictures/Elbrus.jpg" alt="Гора Эльбрус" class="element__image">
           <div class="element__block">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="button button_like" type="button"></button>
+            <button class="button button__like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img src="./images/pictures/Dombai.jpg" alt="Домбай" class="element__image">
           <div class="element__block">
             <h2 class="element__title">Домбай</h2>
-            <button class="button button_like" type="button"></button>
+            <button class="button button__like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img src="./images/pictures/Elbrus.jpg" alt="Гора Эльбрус" class="element__image">
           <div class="element__block">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="button button_like" type="button"></button>
+            <button class="button button__like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img src="./images/pictures/Dombai.jpg" alt="Домбай" class="element__image">
           <div class="element__block">
             <h2 class="element__title">Домбай</h2>
-            <button class="button button_like" type="button"></button>
+            <button class="button button__like" type="button"></button>
           </div>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
           <img src="./images/pictures/Karachaevsk.jpg" alt="Карачаевск" class="element__image">
           <div class="element__block">
             <h2 class="element__title">Карачаево-Черкесия</h2>
-            <button class="button button_like" type="button"></button>
+            <button class="button button__like" type="button"></button>
           </div>
-        </div>    
-        
+        </article>      
       </section>
     </main>
     <footer class="footer">
@@ -77,13 +75,16 @@
     </footer>
   </div>
   <div class="popup">
-    <form class="popup__container">
-      <p class="popup__title">Редактировать профиль</p>
-      <input type="text" name="Name" id="popup__name" class="popup__name" value="Жак-Ив Кусто">
-      <input type="text" name="Job" id="popup__job" class="popup__job" value="Исследователь океана">
-      <button class="button button_save" type="submit">Сохранить</button>
-      <button class="button button_close" type="button"></button>
-    </form>
+    <div class="popup__container">
+      <h3 class="popup__title">Редактировать профиль</h3>
+      <form action="submit" name="profile-form" class="popup__form" method="get">
+        <input type="text" name="Name" id="popup__input_text_name" class="popup__input popup__input_text_name" value="" placeholder="Введите имя">
+        <input type="text" name="Job" id="popup__input_text_job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность">
+        <button class="button button__save" type="submit">Сохранить</button>
+      </form>
+      <button class="button button__close" type="button"></button>
+    </div>
   </div>
+  <script src="js/script.js"></script>
 </body>
 </html>

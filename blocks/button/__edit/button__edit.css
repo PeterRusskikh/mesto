@@ -1,23 +1,22 @@
-.button_edit {
+.button__edit {
 	margin: -20px 0px 0px 18px;
     background-color: black;
     background-image: url(../../../images/icon-button/Edit-Button.svg);
-	width: 24px;
-    height: 24px;
+	min-width: 24px;
+    min-height: 24px;
     background-position: center;
     background-repeat: no-repeat;
     align-self: center;
     border: 1px solid #FFFFFF;
 }
-.button_edit:hover {
+.button__edit:hover {
 	opacity: 0.6;
-	cursor: pointer;
 }
 @media screen and (max-width: 440px) {
-	.button_edit  {
-        margin: -30px 0px 0px 10px;
-        width: 18px;
-        height: 18px;
+	.button__edit  {
+        margin: -28px 0px 0px 10px;
+        min-width: 18px;
+        min-height: 18px;
         background-size: 8px;
 	}
 }

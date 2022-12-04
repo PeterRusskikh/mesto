@@ -3,7 +3,7 @@
 	height: 73px;
 	margin: 0 auto;
 	padding-top: 45px;
-	border-bottom: 1px solid #545454;
+	border-bottom: 1px solid rgba(84, 84, 84, .7);;
 	position: relative;
 }
 @media screen and (max-width: 440px) {

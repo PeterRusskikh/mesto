@@ -1,4 +1,4 @@
-.button_add {
+.button__add {
     background-color: black;
     background-image: url(../../../images/icon-button/Add-Button.svg);
 	width: 150px;
@@ -9,18 +9,18 @@
     border: 2px solid #FFFFFF;
     border-radius: 2px;
 }
-.button_add:hover {
+.button__add:hover {
 	opacity: 0.6;
-	cursor: pointer;
 }
 @media screen and (max-width: 710px) {
-	.button_add  {
+	.button__add  {
         width: 100%;
         margin-top: 18px;
 	}
 }
 @media screen and (max-width: 555px) {
-	.button_add {
-		margin-top: 30px;
+	.button__add {
+		margin-top: 32px;
+        background-size: 16px;
 	}
 }
