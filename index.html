@@ -12,11 +12,11 @@
       <img src="./images/logo.svg" alt="Логотип" class="header__logo">
     </header>
     <main class="main">
-      <section class="profile" aria-label="profile">
+      <section class="profile" aria-label="Профиль">
         <div class="profile__block">
           <img class="profile__avatar" src="./images/Avatar.jpg" alt="Аватар">
           <div class="profile__info">
-            <div>
+            <div class="profile__text-block">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <p class="profile__job">Исследователь океана</p>            
             </div>
@@ -25,7 +25,7 @@
         </div>
         <button class="button profile__button-add" type="button"></button>
       </section>
-      <section class="elements" aria-label="elements">
+      <section class="elements" aria-label="Элементы">
         <article class="element">
           <img src="./images/pictures/Karachaevsk.jpg" alt="Карачаевск" class="element__image">
           <div class="element__block">
@@ -79,7 +79,7 @@
       <h3 class="popup__title">Редактировать профиль</h3>
       <form action="submit" name="profile-form" class="popup__form" method="get">
         <input type="text" name="Name" id="popup__input_text_name" class="popup__input popup__input_text_name" value="" placeholder="Введите имя">
-        <input type="text" name="Job" id="popup__input_text_job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность">
+        <input type="text" name="Job" id="popup__input_text_job" class="popup__input popup__input_margin popup__input_text_job" value="" placeholder="Введите деятельность">
         <button class="button popup__button-save" type="submit">Сохранить</button>
       </form>
       <button class="button popup__button-close" type="button"></button>
