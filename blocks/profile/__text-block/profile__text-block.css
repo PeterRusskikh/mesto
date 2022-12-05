@@ -1,4 +1,8 @@
 .profile__text-block {
-    overflow: hidden;
-	width: 300px;
+	max-width: 300px;
+}
+@media screen and (max-width: 440px) {
+	.profile__text-block {
+		max-width: 100%;
+	}
 }
