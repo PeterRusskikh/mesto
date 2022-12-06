@@ -9,8 +9,8 @@
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 21.78px;
-	border-radius: 2px;
 	border-color: black; 
+	border-radius: 2px;
 }
 .popup__button-save:hover {
 	opacity: 0.8;
