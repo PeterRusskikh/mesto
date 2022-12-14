@@ -57,6 +57,16 @@ popupForm.addEventListener('submit', handleFormSubmit);
 
 
 
+// кнопка ADD -------------------------------------------------------------------
+const buttonAddCard = document.querySelector('.profile__button-add');
+const popupCard = document.querySelector('.popup-card');
+
+buttonAddCard.addEventListener('click', openPopupCard);
+function openPopupCard() {
+	popupCard.classList.add('popup_opened');
+}
+
+
 
 
 
