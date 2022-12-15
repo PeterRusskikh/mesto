@@ -26,14 +26,16 @@
         <button class="button profile__button-add" type="button"></button>
       </section>
       <section class="elements" aria-label="Элементы">
-        <article class="element">
-          <img src="./images/pictures/Karachaevsk.jpg" alt="Карачаевск" class="element__image">
-          <div class="element__block">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="button element__button-like" type="button"></button>
-          </div>
-        </article>
-        <article class="element">
+        <template id="templateCard">
+          <article class="element">
+            <img src="./images/pictures/Karachaevsk.jpg" alt="Карачаевск" class="element__image">
+            <div class="element__block">
+              <h2 class="element__title">Карачаевск</h2>
+              <button class="button element__button-like" type="button"></button>
+            </div>
+          </article>
+        </template>
+        <!-- <article class="element">
           <img src="./images/pictures/Elbrus.jpg" alt="Гора Эльбрус" class="element__image">
           <div class="element__block">
             <h2 class="element__title">Гора Эльбрус</h2>
@@ -67,7 +69,7 @@
             <h2 class="element__title">Карачаево-Черкесия</h2>
             <button class="button element__button-like" type="button"></button>
           </div>
-        </article>      
+        </article>       -->
       </section>
     </main>
     <footer class="footer">
@@ -87,13 +89,13 @@
   </div>
   <div class="popup popup-card">
     <div class="popup__container">
-      <h3 class="popup__title">Новое место</h3>
-      <form action="submit" name="profile-form" class="popup__form" method="get">
-        <input type="text" name="title" id="" class="popup__input" value="" placeholder="Название">
-        <input type="text" name="link" id="" class="popup__input" value="" placeholder="Ссылка на картинку">
-        <button class="button popup__button-save" type="submit">Создать</button>
+      <h3 class="popup__title popup__title-card">Новое место</h3>
+      <form action="submit" name="profile-form" class="popup__form popup__form-card" method="get">
+        <input type="text" name="Name" id="" class="popup__input popup__input-card-name" value="" placeholder="Название">
+        <input type="text" name="url" id="" class="popup__input popup__input-card-url" value="" placeholder="Ссылка на картинку">
+        <button class="button popup__button-save popup__button-create" type="submit">Создать</button>
       </form>
-      <button class="button popup__button-close" type="button"></button>
+      <button class="button popup__button-close popup__button-close-card" type="button"></button>
     </div>
   </div>
   <script src="js/script.js"></script>
