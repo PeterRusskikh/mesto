@@ -146,14 +146,14 @@ const popupTitleCard = document.querySelector('.popup__title-card');
 
 
 
-function handleFormSubmitCard(evt) {
-	evt.preventDefault();
-	popupCardName.textContent = popupName;
-	popupCardUrl.textContent = popupJob;
-	buttonClosePopupCard();
-};
+// function handleFormSubmitCard(evt) {
+// 	evt.preventDefault();
+// 	popupCardName.textContent = popupName;
+// 	popupCardUrl.textContent = popupJob;
+// 	buttonClosePopupCard();
+// };
 
-popupFormCard.addEventListener('submit', handleFormSubmitCard);
+// popupFormCard.addEventListener('submit', handleFormSubmitCard);
 
 
 
