@@ -86,6 +86,7 @@ const initialCards = [
 ];
 
 const elements = document.querySelector('.elements');
+
 // получаем содержимое
 const templateCard = document.querySelector('#templateCard').content;
 // берем каждый элемент массива и возвращаем
@@ -95,7 +96,6 @@ const itemCard = initialCards.map(function (item) {
 		link: item.link
 	};
 });
-
 function renderCard({ name, link }) {
 	// клонируем содержимое тега template
 	const elementClone = templateCard.querySelector('.element').cloneNode(true);
@@ -143,17 +143,12 @@ const popupFormCard = document.querySelector('.popup__form-card');
 const buttonCreate = document.querySelector('.popup__button-create');
 const popupTitleCard = document.querySelector('.popup__title-card');
 
-
-
-
-// function handleFormSubmitCard(evt) {
-// 	evt.preventDefault();
-// 	popupCardName.textContent = popupName;
-// 	popupCardUrl.textContent = popupJob;
-// 	buttonClosePopupCard();
-// };
-
-// popupFormCard.addEventListener('submit', handleFormSubmitCard);
-
-
+function handleFormSubmitCard(evt) {
+	evt.preventDefault();
+	// перемещаем содержимое попапа
+	popupCardName.value.textContent = renderCard(name);
+	popupCardUrl.value.textContent = renderCard(link);
+	buttonClosePopupCard();
+};
+popupFormCard.addEventListener('submit', handleFormSubmitCard);
 
