@@ -85,10 +85,15 @@ const initialCards = [
 	}
 ];
 
+
+
+
+
+
 const elements = document.querySelector('.elements');
 
 // получаем содержимое
-const templateCard = document.querySelector('#templateCard').content;
+const templateCard = document.querySelector('#elements').content;
 // берем каждый элемент массива и возвращаем
 const itemCard = initialCards.map(function (item) {
 	return {
