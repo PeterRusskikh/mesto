@@ -8,7 +8,7 @@ const popupName = document.querySelector('.popup__input_text_name');
 const popupJob = document.querySelector('.popup__input_text_job');
 const popupForm = document.querySelector('.popup__form');
 
-// кнопка EDIT -------------------------------------------------------------------
+// кнопка EDIT --------------------------------------------------------
 // открываем попап, добавляем новый класс
 buttonEdit.addEventListener('click', openPopup);
 function openPopup() {
@@ -57,7 +57,7 @@ function handleFormSubmit(evt) {
 popupForm.addEventListener('submit', handleFormSubmit);
 
 
-// ----задание-1--------------------------------------------------------------------------------
+// ----Sprint 5----------------------------------------------------------------
 const initialCards = [
 	{
 		name: 'Архыз',
@@ -85,40 +85,62 @@ const initialCards = [
 	}
 ];
 
-
-
-
-
-
+const popupCardName = document.querySelector('.popup__input-card-name');
+const popupCardUrl = document.querySelector('.popup__input-card-url');
+const popupFormCard = document.querySelector('.popup__form-card');
+const buttonCreate = document.querySelector('.popup__button-create');
+const popupTitleCard = document.querySelector('.popup__title-card');
 const elements = document.querySelector('.elements');
-
 // получаем содержимое
 const templateCard = document.querySelector('#elements').content;
-// берем каждый элемент массива и возвращаем
-const itemCard = initialCards.map(function (item) {
-	return {
-		name: item.name,
-		link: item.link
-	};
-});
+
+
 function renderCard({ name, link }) {
 	// клонируем содержимое тега template
 	const elementClone = templateCard.querySelector('.element').cloneNode(true);
 	// наполняем содержимым
-	const elementCancheTitle = elementClone.querySelector('.element__title');
-	elementCancheTitle.textContent = name;
-	const elementChancheImage = elementClone.querySelector('.element__image');
-	elementChancheImage.src = link;
-	// в начало
-	elements.prepend(elementClone);
+	const elementTitle = elementClone.querySelector('.element__title');
+	elementTitle.textContent = name;
+	const elementImage = elementClone.querySelector('.element__image');
+	elementImage.src = link;
+
+	// ----задание-5--треш-----------------------------------------
+	const buttonTrash = elementClone.querySelector('.element__button-trash');
+	buttonTrash.addEventListener('click', function () {
+		elementClone.remove();
+	});
+
+	// ----задание-4-лайк-----------------------------------------
+	const buttonLike = elementClone.querySelector('.element__button-like');
+	buttonLike.addEventListener('click', function () {
+		buttonLike.classList.toggle('element__button-like_active');
+	});
+	// ----задание-6-----------------------------------------
+	elementImage.addEventListener('click', function () {
+		document.getElementById("big-photo").innerHTML =
+			("style='position: absolute;' src='" + photo + "'>");
+		openElementImage();
+	});
+
+	return elementClone;
+}
+elements.append(...initialCards.map(renderCard));
+
+// ----добавляем карточку--------------------------------------------------
+function handleFormSubmitCard(evt) {
+	evt.preventDefault();
+	elements.prepend(renderCard({ name: popupCardName.value, link: popupCardUrl.value }));
+	popupCardName.value = '';
+	popupCardUrl.value = '';
+	buttonClosePopupCard();
+};
+popupFormCard.addEventListener('submit', handleFormSubmitCard);
+// ----функция открытия картинки--------------------------------------------------
+function openElementImage() {
+
 }
 
-function render() {
-	itemCard.forEach(renderCard);
-}
-render();
-
-// ----задание-2--------------------------------------------------------------------------------
+// ----закрываем попап--------------------------------------------------
 const buttonAdd = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup-card');
 const buttonCloseCard = document.querySelector('.popup__button-close-card');
@@ -141,19 +163,5 @@ popupCard.addEventListener('click', function (event) {
 	}
 });
 
-// ----задание-3-----------------------------------------------------------------------
-const popupCardName = document.querySelector('.popup__input-card-name');
-const popupCardUrl = document.querySelector('.popup__input-card-url');
-const popupFormCard = document.querySelector('.popup__form-card');
-const buttonCreate = document.querySelector('.popup__button-create');
-const popupTitleCard = document.querySelector('.popup__title-card');
 
-function handleFormSubmitCard(evt) {
-	evt.preventDefault();
-	// перемещаем содержимое попапа
-	popupCardName.value.textContent = renderCard(name);
-	popupCardUrl.value.textContent = renderCard(link);
-	buttonClosePopupCard();
-};
-popupFormCard.addEventListener('submit', handleFormSubmitCard);
 

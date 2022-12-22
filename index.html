@@ -25,8 +25,18 @@
         </div>
         <button class="button profile__button-add" type="button"></button>
       </section>
-      <!-- <section class="elements" aria-label="Элементы">
-        <article class="element">
+      <section class="elements" aria-label="Элементы">
+        <template id="elements">
+          <article class="element">
+            <img src="#" id="big-photo" alt="Картинка" class="element__image">
+            <div class="element__block">
+              <h2 class="element__title"></h2>
+              <button class="button element__button-like" type="button"></button>
+              <button class="button element__button-trash" name="delete" type="button"></button>
+            </div>
+          </article>
+        </template>
+        <!-- <article class="element">
           <button class="button element__button-trash" name="delete" type="button"></button>
           <img src="./images/pictures/Karachaevsk.jpg" alt="Карачаевск" class="element__image">
           <div class="element__block">
@@ -73,24 +83,14 @@
             <h2 class="element__title">Карачаево-Черкесия</h2>
             <button class="button element__button-like" type="button"></button>
           </div>
-        </article>
-      </section> -->
+        </article> -->
+      </section>
     </main>
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
   </div>
 
-  <template id="elements">
-    <article class="element">
-      <img src="#" alt="Картинка" class="element__image">
-      <div class="element__block">
-        <h2 class="element__title"></h2>
-        <button class="button element__button-like" type="button"></button>
-        <button class="button element__button-trash" name="delete" type="button"></button>
-      </div>
-    </article>
-  </template>
   <div class="popup">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
