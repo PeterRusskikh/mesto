@@ -119,6 +119,12 @@ function renderCard({ name, link }) {
 	const fullImg = document.querySelector('.full-img');
 	elementImage.addEventListener('click', function () {
 		fullImg.classList.add('popup_opened');
+		function fullImgAdd() {
+			const FullNameImage = document.querySelector('.full-img__name-image');
+			const FullImage = document.querySelector('.full-img__image');
+			FullImage.src = link;
+			FullNameImage.textContent = name;
+		};
 		fullImgAdd();
 
 	});
@@ -136,15 +142,7 @@ function renderCard({ name, link }) {
 		}
 	});
 
-	function fullImgAdd(link, name) {
 
-		const FullNameImage = document.querySelector('.full-img__name-image');
-		const FullImage = document.querySelector('.full-img__image');
-
-		popupCardName.textContent = name;
-		popupCardUrl.src = link;
-
-	}
 
 	return elementClone;
 }
