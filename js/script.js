@@ -116,11 +116,35 @@ function renderCard({ name, link }) {
 		buttonLike.classList.toggle('element__button-like_active');
 	});
 	// ----задание-6-----------------------------------------
+	const fullImg = document.querySelector('.full-img');
 	elementImage.addEventListener('click', function () {
-		document.getElementById("big-photo").innerHTML =
-			("style='position: absolute;' src='" + photo + "'>");
-		openElementImage();
+		fullImg.classList.add('popup_opened');
+		fullImgAdd();
+
 	});
+
+	const fullImgClose = document.querySelector('.full-img__button-close');
+	fullImgClose.addEventListener('click', fullImgCloseRemove);
+	function fullImgCloseRemove() {
+		event.preventDefault();
+		fullImg.classList.remove('popup_opened');
+	};
+
+	fullImg.addEventListener('click', function (event) {
+		if (event.target === event.currentTarget) {
+			fullImgCloseRemove();
+		}
+	});
+
+	function fullImgAdd(link, name) {
+
+		const FullNameImage = document.querySelector('.full-img__name-image');
+		const FullImage = document.querySelector('.full-img__image');
+
+		popupCardName.textContent = name;
+		popupCardUrl.src = link;
+
+	}
 
 	return elementClone;
 }
@@ -136,9 +160,7 @@ function handleFormSubmitCard(evt) {
 };
 popupFormCard.addEventListener('submit', handleFormSubmitCard);
 // ----функция открытия картинки--------------------------------------------------
-function openElementImage() {
 
-}
 
 // ----закрываем попап--------------------------------------------------
 const buttonAdd = document.querySelector('.profile__button-add');
