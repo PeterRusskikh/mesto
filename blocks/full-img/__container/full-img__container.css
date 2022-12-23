@@ -1,4 +1,11 @@
 .full-img__container {
-	max-width: 75vh;
+	border-radius: 0px;
+	background: rgba(161,21,207, 0);
 	max-height: 75vh;
+	max-width: 75vw;
+}
+@media screen and (max-width: 400px) {
+	.full-img__container {
+		
+	}
 }

@@ -7,6 +7,7 @@ const profileJob = document.querySelector('.profile__job');
 const popupName = document.querySelector('.popup__input_text_name');
 const popupJob = document.querySelector('.popup__input_text_job');
 const popupForm = document.querySelector('.popup__form');
+const fullImg = document.querySelector('.full-img');
 
 // кнопка EDIT --------------------------------------------------------
 // открываем попап, добавляем новый класс
@@ -115,34 +116,13 @@ function renderCard({ name, link }) {
 	buttonLike.addEventListener('click', function () {
 		buttonLike.classList.toggle('element__button-like_active');
 	});
+
 	// ----задание-6-----------------------------------------
-	const fullImg = document.querySelector('.full-img');
+
 	elementImage.addEventListener('click', function () {
 		fullImg.classList.add('popup_opened');
-		function fullImgAdd() {
-			const FullNameImage = document.querySelector('.full-img__name-image');
-			const FullImage = document.querySelector('.full-img__image');
-			FullImage.src = link;
-			FullNameImage.textContent = name;
-		};
-		fullImgAdd();
-
+		fullImgAdd(link, name);
 	});
-
-	const fullImgClose = document.querySelector('.full-img__button-close');
-	fullImgClose.addEventListener('click', fullImgCloseRemove);
-	function fullImgCloseRemove() {
-		event.preventDefault();
-		fullImg.classList.remove('popup_opened');
-	};
-
-	fullImg.addEventListener('click', function (event) {
-		if (event.target === event.currentTarget) {
-			fullImgCloseRemove();
-		}
-	});
-
-
 
 	return elementClone;
 }
@@ -157,8 +137,29 @@ function handleFormSubmitCard(evt) {
 	buttonClosePopupCard();
 };
 popupFormCard.addEventListener('submit', handleFormSubmitCard);
+
 // ----функция открытия картинки--------------------------------------------------
 
+function fullImgAdd(link, name) {
+	const FullNameImage = document.querySelector('.full-img__name-image');
+	const FullImage = document.querySelector('.full-img__image');
+	FullImage.src = link;
+	FullNameImage.textContent = name;
+};
+
+const fullImgClose = document.querySelector('.full-img__button-close');
+
+fullImgClose.addEventListener('click', fullImgCloseRemove);
+function fullImgCloseRemove() {
+	event.preventDefault();
+	fullImg.classList.remove('popup_opened');
+};
+
+fullImg.addEventListener('click', function (event) {
+	if (event.target === event.currentTarget) {
+		fullImgCloseRemove();
+	}
+});
 
 // ----закрываем попап--------------------------------------------------
 const buttonAdd = document.querySelector('.profile__button-add');
