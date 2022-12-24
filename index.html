@@ -43,21 +43,21 @@
     </footer>
   </div>
 
-  <div class="popup">
+  <div class="popup" id="popupProfile">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
-      <form action="submit" name="profile-form" class="popup__form" method="get">
+      <form action="submit" name="profile-form" id="popupFormProfileEdit" class="popup__form" method="get">
         <input type="text" name="Name" id="popup__input_text_name" class="popup__input popup__input_text_name" value="" placeholder="Введите имя">
         <input type="text" name="Job" id="popup__input_text_job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность">
         <button class="button popup__button-save" type="submit">Сохранить</button>
       </form>
-      <button class="button popup__button-close" type="button"></button>
+      <button id="buttonCloseProfileEdit" class="button popup__button-close" type="button"></button>
     </div>
   </div>
   <div class="popup popup-card">
     <div class="popup__container">
       <h3 class="popup__title popup__title-card">Новое место</h3>
-      <form action="submit" name="profile-form" class="popup__form popup__form-card" method="get">
+      <form action="submit" name="profileFormCardpopup" class="popup__form popup__form-card" method="get">
         <input type="text" name="Name" id="cardName" class="popup__input popup__input-card-name" value="" placeholder="Название">
         <input type="text" name="url" id="cardUrl" class="popup__input popup__input-card-url" value="" placeholder="Ссылка на картинку">
         <button class="button popup__button-save popup__button-create" type="submit">Создать</button>
@@ -76,6 +76,7 @@
       <button class="button popup__button-close full-img__button-close" type="button"></button>
     </div>
   </div>
-  <script src="js/script.js"></script>
+  <script src="js/script.js" type="module"></script>
+  <script src="js/ArrayCards.js" type="module"></script>
 </body>
 </html>
