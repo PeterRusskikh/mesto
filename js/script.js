@@ -122,3 +122,6 @@ fullImg.addEventListener('click', () => {
 
 
 
+
+
+
