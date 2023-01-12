@@ -96,8 +96,8 @@ popupCard.addEventListener('click', () => {
 function handleFormSubmitCard(evt) {
 	evt.preventDefault();
 	elements.prepend(renderCard({ name: popupCardName.value, link: popupCardUrl.value }));
-	popupCardName.value = '';
-	popupCardUrl.value = '';
+	// popupCardName.value = '';
+	// popupCardUrl.value = '';
 	closePopup(popupCard);
 };
 popupFormCard.addEventListener('submit', handleFormSubmitCard);

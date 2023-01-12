@@ -1,56 +1,72 @@
-const formElement = document.querySelector('.form');
-const formInput = formElement.querySelector('.form__input');
-const formError = formElement.querySelector(`.${formInput.id}-error`);
 
-const showError = (formElement, inputElement, errorMessage) => {
-	input.classList.add('form__input_type_error');
-	formError.textContent = errorMessage;
-	formError.classList.add('form__input-error_active');
+function showInputError(formElement, inputElement, config) {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-};
+	errorElement.classList.add(config.errorClass);
+	errorElement.textContent = inputElement.validationMessage;
+	inputElement.classList.add(config.inputErrorClass);
+}
 
-const hideError = (input) => {
-	input.classList.remove('form__input_type_error');
-	// 1. Удалите активный класс ошибки c formError.
-	formError.classList.remove('form__input-error_active');
-	// 2. Очистите свойство textContent элемента formError.
-	formError.textContent = '';
+function hideInputError(formElement, inputElement, config) {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-};
+	errorElement.classList.remove(config.errorClass);
+	errorElement.textContent = '';
+	inputElement.classList.remove(config.inputErrorClass);
+}
 
-const checkInputValidity = () => {
-	if (!formInput.validity.valid) {
-		showError(formInput, formInput.validationMessage);
+
+// проверяем значение validationState
+function checkInputValidity(formElement, inputElement, config) {
+	if (inputElement.validity.valid) {
+		hideInputError(formElement, inputElement, config);
 	} else {
-		hideError(formInput);
+		showInputError(formElement, inputElement, config);
 	}
+}
+
+// находим все инпуты каждой формы и навешиваем обработчики на события на них
+function setEventListeners(formElement, config) {
+	const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+
+	inputList.forEach((inputElement) => {
+		inputElement.addEventListener('input', () => {
+			checkInputValidity(formElement, inputElement, config);
+		})
+	})
+}
+// найдем все формы
+function enableValidation(config) {
+	const formList = Array.from(document.querySelectorAll(config.formSelector));
+
+	formList.forEach((formElement) => {
+		setEventListeners(formElement, config)
+	})
+}
+
+const validationConfig = {
+	formSelector: '.popup__form',
+	inputSelector: '.popup__input',
+	submitButtonSelector: '.popup__button',
+	activeButtonClass: 'popup__button_valid',
+	inactiveButtonClass: 'popup__button_invalid',
+	inputErrorClass: 'popup__input_type_error',
+	errorClass: 'popup__input-error_visible'
 };
 
-formElement.addEventListener('submit', function (evt) {
+const form = document.querySelector('.popup__form');
+const userNameInput = document.querySelector('#username');
+const emailInput = document.querySelector('#email');
+
+function handleSubmit1(evt) {
 	evt.preventDefault();
-});
+	console.log({
+		username: userNameInput.value,
+		email: emailInput.value,
+	})
+}
+form.addEventListener('submit', handleSubmit1);
 
-formInput.addEventListener('input', function () {
-	checkInputValidity();
-});
-// 	console.log(evt.target.validity);
-// });
-// cardUrlInput.addEventListener('input', function (evt) {
-// 	console.log(evt.target.validity);
-// });
-
-// Функция, которая добавляет класс с ошибкой
-// const showInputError = (element) => {
-// 	element.classList.add('form__input_type_error');
-// };
-// // Функция, которая удаляет класс с ошибкой
-// const hideInputError = (element) => {
-// 	element.classList.remove('form__input_type_error');
-// };
+enableValidation(validationConfig);
 
 
-// // Вызовем функцию isValid на каждый ввод символа
-// cardNameInput.addEventListener('input', isValid(cardNameInput));
-// cardUrlInput.addEventListener('input', isValid(cardUrlInput));
 
 
