@@ -23,13 +23,37 @@ function checkInputValidity(formElement, inputElement, config) {
 	}
 }
 
+// проходимся по инпутам, проверяем валидность
+function hasInvalidInput(inputList) {
+	return inputList.some((inputElement) => !inputElement.validity.valid);
+}
+
+function toggleButtonState(inputList, buttonElement, config) {
+	if (hasInvalidInput(inputList)) {
+		buttonElement.classList.remove(config.activeButtonClass);
+		buttonElement.classList.add(config.inactiveButtonClass);
+		buttonElement.disabled = true;
+
+	} else {
+		buttonElement.classList.add(config.activeButtonClass);
+		buttonElement.classList.remove(config.inactiveButtonClass);
+		buttonElement.disabled = false;
+	}
+}
+
 // находим все инпуты каждой формы и навешиваем обработчики на события на них
 function setEventListeners(formElement, config) {
 	const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+	const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
+	// выдает ОШИБКИ--------------------------------------------------
+	// toggleButtonState(inputList, buttonElement, config)
+
+	//---------------------------------------------------------------------
 	inputList.forEach((inputElement) => {
 		inputElement.addEventListener('input', () => {
 			checkInputValidity(formElement, inputElement, config);
+			toggleButtonState(inputList, buttonElement, config)
 		})
 	})
 }
@@ -46,21 +70,21 @@ const validationConfig = {
 	formSelector: '.popup__form',
 	inputSelector: '.popup__input',
 	submitButtonSelector: '.popup__button',
-	activeButtonClass: 'popup__button_valid',
-	inactiveButtonClass: 'popup__button_invalid',
-	inputErrorClass: 'popup__input_type_error',
+	activeButtonClass: 'popup__button-valid',
+	inactiveButtonClass: 'popup__button-invalid',
+	inputErrorClass: 'popup__input-error',
 	errorClass: 'popup__input-error_visible'
 };
 
 const form = document.querySelector('.popup__form');
-const userNameInput = document.querySelector('#username');
-const emailInput = document.querySelector('#email');
+const nameInput = document.querySelector('#name');
+const urlInput = document.querySelector('#url');
 
 function handleSubmit1(evt) {
 	evt.preventDefault();
 	console.log({
-		username: userNameInput.value,
-		email: emailInput.value,
+		name: nameInput.value,
+		url: urlInput.value,
 	})
 }
 form.addEventListener('submit', handleSubmit1);

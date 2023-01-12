@@ -65,6 +65,11 @@
 @import url(../blocks/full-img/__image/full-img__image.css);
 
 @import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__input-error/_visible/popup__input-error_visible.css);
+
+
+@import url(../blocks/popup/__button-invalide/popup__button-invalid.css);
+@import url(../blocks/popup/__button-valid/popop__button-valid.css);
 
 
 

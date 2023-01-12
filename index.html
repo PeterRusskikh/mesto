@@ -52,21 +52,18 @@
       <form novalidate name="registration" class="popup__form popup__form-card" method="get" novalidate>
 
         <label>
-          <input type="text" name="username" id="username" class="popup__input popup__input-card-name" value="" placeholder="Название" required minlength="2" maxlength="40">
-          <span class="username-error popup__input-error"></span>
+          <input type="text" name="name" id="name" class="popup__input popup__input-card-name" value="" placeholder="Название" required minlength="2" maxlength="40">
+          <span class="name-error popup__input-error"></span>
         </label>
 
         <label>
-          <input type="email" name="email" id="email" class="popup__input popup__input-card-url" value="" placeholder="Ссылка на картинку" required>
-          <span class="email-error popup__input-error"></span>
+          <input type="url" name="url" id="url" class="popup__input popup__input-card-url" value="" placeholder="Ссылка на картинку" required>
+          <span class="url-error popup__input-error"></span>
         </label>
         
-        <button class="button popup__button popup__button-save popup__button-create popup__button_valid" type="submit">Создать</button>
+        <button id="oroeqw" class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit" disabled>Создать</button>
 
       </form>
-
-      
-
 
 
       <button class="button popup__button-close popup__button-close-card" type="button"></button>
