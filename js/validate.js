@@ -14,7 +14,7 @@ function hideInputError(formElement, inputElement, config) {
 }
 
 
-// проверяем значение validationState
+// проверяем значение validatityState
 function checkInputValidity(formElement, inputElement, config) {
 	if (inputElement.validity.valid) {
 		hideInputError(formElement, inputElement, config);
@@ -47,7 +47,7 @@ function setEventListeners(formElement, config) {
 	const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
 	// выдает ОШИБКИ--------------------------------------------------
-	// toggleButtonState(inputList, buttonElement, config)
+	// toggleButtonState(inputList, buttonElement, config) работает и без этого
 
 	//---------------------------------------------------------------------
 	inputList.forEach((inputElement) => {
@@ -60,7 +60,6 @@ function setEventListeners(formElement, config) {
 // найдем все формы
 function enableValidation(config) {
 	const formList = Array.from(document.querySelectorAll(config.formSelector));
-
 	formList.forEach((formElement) => {
 		setEventListeners(formElement, config)
 	})
@@ -79,12 +78,23 @@ const validationConfig = {
 const form = document.querySelector('.popup__form');
 const nameInput = document.querySelector('#name');
 const urlInput = document.querySelector('#url');
+const userNameInput = document.querySelector('#popup__input_text_name');
+const jobInput = document.querySelector('#popup__input_text_job');
+
+// function handleSubmit1(evt) {
+// 	evt.preventDefault();
+// 	console.log({
+// 		name: nameInput.value,
+// 		url: urlInput.value,
+// 	})
+// }
+// form.addEventListener('submit', handleSubmit1);
 
 function handleSubmit1(evt) {
 	evt.preventDefault();
 	console.log({
-		name: nameInput.value,
-		url: urlInput.value,
+		username: userNameInput.value,
+		job: jobInput.value,
 	})
 }
 form.addEventListener('submit', handleSubmit1);

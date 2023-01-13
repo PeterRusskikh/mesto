@@ -12,9 +12,17 @@ const popupFormProfileEdit = document.querySelector('#popupFormProfileEdit');
 // Закрытие, открытие попапов--------------------------------
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
+	document.addEventListener('keydown', popupCloseEscKeybord);
 }
 function closePopup(popup) {
 	popup.classList.remove('popup_opened');
+
+}
+function popupCloseEscKeybord(evt) {
+	if (evt.key === 'Escape') {
+		const popupOpened = document.querySelector('.popup_opened');
+		closePopup(popupOpened);
+	}
 }
 function ClosePopupOutside(popup) {
 	if (event.target === event.currentTarget) {
@@ -26,6 +34,8 @@ buttonEdit.addEventListener('click', () => {
 	openPopup(popupProfile);
 	formProfileInputName.value = profileName.textContent;
 	formProfileInputJob.value = profileJob.textContent;
+	formProfileInputName.value = '';
+	formProfileInputJob.value = '';
 });
 buttonCloseProfileEdit.addEventListener('click', () => {
 	closePopup(popupProfile);
@@ -101,7 +111,6 @@ function handleFormSubmitCard(evt) {
 	closePopup(popupCard);
 };
 popupFormCard.addEventListener('submit', handleFormSubmitCard);
-
 // передаем данные для открытия картинки на полный экран
 function fullImgAdd(link, name) {
 	const fullNameImage = document.querySelector('.full-img__name-image');
