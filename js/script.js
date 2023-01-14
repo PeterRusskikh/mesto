@@ -48,6 +48,9 @@ function handleFormSubmit(evt) {
 	evt.preventDefault();
 	profileName.textContent = formProfileInputName.value;
 	profileJob.textContent = formProfileInputJob.value;
+	const button = evt.submitter;
+	button.disabled = true;
+	button.classList.add('popup__button-invalid');
 	closePopup(popupProfile);
 };
 popupFormProfileEdit.addEventListener('submit', handleFormSubmit);
@@ -108,6 +111,9 @@ function handleFormSubmitCard(evt) {
 	elements.prepend(renderCard({ name: popupCardName.value, link: popupCardUrl.value }));
 	popupCardName.value = '';
 	popupCardUrl.value = '';
+	const button = evt.submitter;
+	button.disabled = true;
+	button.classList.add('popup__button-invalid');
 	closePopup(popupCard);
 };
 popupFormCard.addEventListener('submit', handleFormSubmitCard);
@@ -126,11 +132,5 @@ fullImgClose.addEventListener('click', () => {
 fullImg.addEventListener('click', () => {
 	ClosePopupOutside(fullImg);
 });
-
-
-
-
-
-
 
 
