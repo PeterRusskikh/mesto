@@ -18,7 +18,6 @@ const buttonAdd = document.querySelector('.profile__button-add');
 const buttonCloseCard = document.querySelector('.popup__button-close-card');
 const popupCard = document.querySelector('.popup-card');
 const fullImgClose = document.querySelector('.full-img__button-close');
-const closeButtons = document.querySelectorAll('.popup__button-close');
 // Закрытие, открытие попапов--------------------------------
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
@@ -45,7 +44,6 @@ popups.forEach((popup) => {
 	});
 });
 
-
 // ----popupProfile---------------------------------------------
 buttonEdit.addEventListener('click', () => {
 	openPopup(popupProfile);
@@ -67,6 +65,7 @@ function handleFormSubmitProfile(evt) {
 	buttonDefaultState(evt.submitter);
 	closePopup(popupProfile);
 };
+
 popupFormProfileEdit.addEventListener('submit', handleFormSubmitProfile);
 // ----Sprint 5----------------------------------------------------------------
 // получаем содержимое

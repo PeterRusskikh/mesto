@@ -7,13 +7,7 @@ const validationConfig = {
 	inputErrorClass: 'popup__input-error',
 	errorClass: 'popup__input-error_visible'
 };
-const inputs = document.querySelectorAll('.popup__input');
 const forms = document.querySelectorAll('.popup__form');
-const nameInput = document.querySelector('#name');
-const urlInput = document.querySelector('#url');
-const userNameInput = document.querySelector('#popup__input_text_name');
-const jobInput = document.querySelector('#popup__input_text_job');
-
 
 function showInputError(formElement, inputElement, config) {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -29,11 +23,7 @@ function hideInputError(formElement, inputElement, config) {
 		errorElement.textContent = '';
 		inputElement.classList.remove(config.inputErrorClass);
 	}
-	// inputElement.classList.remove(config.inputErrorClass);
-	// errorElement.classList.remove(config.errorClass);
-	// errorElement.textContent = '';
 }
-
 // проверяем значение validatityState
 function checkInputValidity(formElement, inputElement, config) {
 	if (inputElement.validity.valid) {
@@ -42,19 +32,23 @@ function checkInputValidity(formElement, inputElement, config) {
 		showInputError(formElement, inputElement, config);
 	}
 }
-
-
 // проходимся по инпутам, проверяем валидность
 function hasInvalidInput(inputList) {
 	return inputList.some((inputElement) => !inputElement.validity.valid);
 }
 
-function toggleButtonState(inputList, buttonElement, config) {
-	if (!hasInvalidInput(inputList)) {
-		buttonElement.classList.remove(config.inactiveButtonClass);
-		buttonElement.disabled = false;
+function toggleButtonState(inputList, formButton, config) {
+	if (hasInvalidInput(inputList)) {
+		formButton.classList.remove(config.activeButtonClass)
+		formButton.classList.add(config.inactiveButtonClass)
+		formButton.disabled = true;
+	} else {
+		formButton.classList.add(config.activeButtonClass)
+		formButton.classList.remove(config.inactiveButtonClass)
+		formButton.disabled = false;
 	}
-};
+}
+
 // находим все инпуты каждой формы и навешиваем обработчики на события на них
 function setEventListeners(formElement, config) {
 	const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));

@@ -61,11 +61,9 @@
           <span class="url-error popup__input-error"></span>
         </label>
         
-        <button class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit" disabled>Создать</button>
+        <button class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit">Создать</button>
 
       </form>
-
-
       <button class="button popup__button-close popup__button-close-card" type="button"></button>
     </div>
   </div>
@@ -76,18 +74,17 @@
       <form name="profile-form" action="submit" id="popupFormProfileEdit" class="popup__form" method="get" novalidate>
         
         <label>
-          <input type="text" name="username" id="popup__input_text_name" class="popup__input popup__input_text_name" value="" placeholder="Введите имя" minlength="2" maxlength="40" required>
+          <input type="text" name="username" id="username" class="popup__input popup__input_text_name" value="" placeholder="Введите имя" minlength="2" maxlength="40" required>
           <span class="username-error popup__input-error"></span>
         </label>
         
         <label>
-          <input type="text" name="job" id="popup__input_text_job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность" minlength="2" maxlength="200" required>
+          <input type="text" name="job" id="job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность" minlength="2" maxlength="200" required>
           <span class="job-error popup__input-error"></span>
         </label>
 
-        <button class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit" disabled>Сохранить</button>
+        <button class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit">Сохранить</button>
       </form>
-
       <button id="buttonCloseProfileEdit" class="button popup__button-close" type="button"></button>
     </div>
   </div>
