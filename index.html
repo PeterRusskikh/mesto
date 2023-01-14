@@ -52,7 +52,7 @@
       <form name="popup-card" class="popup__form popup__form-card" method="get" novalidate>
 
         <label>
-          <input type="text" name="name" id="name" class="popup__input popup__input-card-name" value="" placeholder="Название" required minlength="2" maxlength="30">
+          <input type="text" name="name" id="name" class="popup__input popup__input-card-name" value="" placeholder="Название" minlength="2" maxlength="30" required>
           <span class="name-error popup__input-error"></span>
         </label>
 
@@ -61,7 +61,7 @@
           <span class="url-error popup__input-error"></span>
         </label>
         
-        <button id="oroeqw" class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit" disabled>Создать</button>
+        <button class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit" disabled>Создать</button>
 
       </form>
 
@@ -73,15 +73,15 @@
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
 
-      <form novalidate action="submit" name="profile-form" id="popupFormProfileEdit" class="popup__form" method="get">
+      <form name="profile-form" action="submit" id="popupFormProfileEdit" class="popup__form" method="get" novalidate>
         
         <label>
-          <input type="text" name="username" id="popup__input_text_name" class="popup__input popup__input_text_name" value="" placeholder="Введите имя" required minlength="2" maxlength="40">
-          <span class="username-error popup__input-error"></span>  
+          <input type="text" name="username" id="popup__input_text_name" class="popup__input popup__input_text_name" value="" placeholder="Введите имя" minlength="2" maxlength="40" required>
+          <span class="username-error popup__input-error"></span>
         </label>
         
         <label>
-          <input type="text" name="job" id="popup__input_text_job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность" required minlength="2" maxlength="200">
+          <input type="text" name="job" id="popup__input_text_job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность" minlength="2" maxlength="200" required>
           <span class="job-error popup__input-error"></span>
         </label>
 
