@@ -1,7 +1,6 @@
 import initialCards from './ArrayCards.js'
 
 const buttonEdit = document.querySelector('.profile__button-edit');
-const buttonCloseProfileEdit = document.querySelector('#buttonCloseProfileEdit');
 const popupProfile = document.querySelector('#popupProfile');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
@@ -15,9 +14,7 @@ const popupFormCard = document.querySelector('.popup__form-card');
 const elements = document.querySelector('.elements');
 const fullImg = document.querySelector('.full-img');
 const buttonAdd = document.querySelector('.profile__button-add');
-const buttonCloseCard = document.querySelector('.popup__button-close-card');
 const popupCard = document.querySelector('.popup-card');
-const fullImgClose = document.querySelector('.full-img__button-close');
 // Закрытие, открытие попапов--------------------------------
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
@@ -50,19 +47,13 @@ buttonEdit.addEventListener('click', () => {
 	formProfileInputName.value = profileName.textContent;
 	formProfileInputJob.value = profileJob.textContent;
 });
-buttonCloseProfileEdit.addEventListener('click', () => {
-	closePopup(popupProfile);
-});
-function buttonDefaultState(button) {
-	button.disabled = true;
-	button.classList.add('popup__button-invalid');
-}
+
 // Перемещаем введенные данные в профиль
 function handleFormSubmitProfile(evt) {
 	evt.preventDefault();
 	profileName.textContent = formProfileInputName.value;
 	profileJob.textContent = formProfileInputJob.value;
-	buttonDefaultState(evt.submitter);
+
 	closePopup(popupProfile);
 };
 
@@ -101,9 +92,6 @@ elements.append(...initialCards.map(renderCard));
 buttonAdd.addEventListener('click', () => {
 	openPopup(popupCard);
 });
-buttonCloseCard.addEventListener('click', () => {
-	closePopup(popupCard);
-});
 
 // добавляем карточку
 function handleFormSubmitCard(evt) {
@@ -111,7 +99,6 @@ function handleFormSubmitCard(evt) {
 	elements.prepend(renderCard({ name: popupCardName.value, link: popupCardUrl.value }));
 	popupCardName.value = '';
 	popupCardUrl.value = '';
-	buttonDefaultState(evt.submitter);
 	closePopup(popupCard);
 };
 popupFormCard.addEventListener('submit', handleFormSubmitCard);
@@ -122,8 +109,4 @@ function fullImgAdd(link, name) {
 	fullImage.src = link;
 	fullNameImage.textContent = name;
 };
-
-fullImgClose.addEventListener('click', () => {
-	closePopup(fullImg);
-});
 

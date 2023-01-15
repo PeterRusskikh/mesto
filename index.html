@@ -51,15 +51,15 @@
 
       <form name="popup-card" class="popup__form popup__form-card" method="get" novalidate>
 
-        <label>
-          <input type="text" name="name" id="name" class="popup__input popup__input-card-name" value="" placeholder="Название" minlength="2" maxlength="30" required>
-          <span class="name-error popup__input-error"></span>
-        </label>
 
-        <label>
+          <input type="text" name="name" id="name" class="popup__input popup__input-card-name" value="" placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="name-error popup__input-error">вы пропустили поле.</span>
+
+
+
           <input type="url" name="url" id="url" class="popup__input popup__input-card-url" value="" placeholder="Ссылка на картинку" required>
-          <span class="url-error popup__input-error"></span>
-        </label>
+          <span class="url-error popup__input-error">вы пропустили поле.</span>
+
         
         <button class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit">Создать</button>
 
@@ -73,15 +73,15 @@
 
       <form name="profile-form" action="submit" id="popupFormProfileEdit" class="popup__form" method="get" novalidate>
         
-        <label>
+
           <input type="text" name="username" id="username" class="popup__input popup__input_text_name" value="" placeholder="Введите имя" minlength="2" maxlength="40" required>
-          <span class="username-error popup__input-error"></span>
-        </label>
+          <span class="username-error popup__input-error">вы пропустили поле.</span>
+
         
-        <label>
+
           <input type="text" name="job" id="job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность" minlength="2" maxlength="200" required>
-          <span class="job-error popup__input-error"></span>
-        </label>
+          <span class="job-error popup__input-error">вы пропустили поле.</span>
+
 
         <button class="button popup__button popup__button-save popup__button-create popup__button-invalid" type="submit">Сохранить</button>
       </form>
@@ -100,7 +100,7 @@
     </div>
   </div>
   <script src="js/script.js" type="module"></script>
-  <script src="js/ArrayCards.js" type="module"></script>
+  <script src="js/arrayCards.js" type="module"></script>
   <script src="js/validate.js" type="module"></script>
 </body>
 </html>
