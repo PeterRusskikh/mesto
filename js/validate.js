@@ -1,3 +1,5 @@
+export default buttonDefaultState;
+
 const validationConfig = {
 	formSelector: '.popup__form',
 	inputSelector: '.popup__input',
@@ -7,7 +9,6 @@ const validationConfig = {
 	inputErrorClass: 'popup__input-error',
 	errorClass: 'popup__input-error_visible'
 };
-const forms = document.querySelectorAll('.popup__form');
 
 function showInputError(formElement, inputElement, config) {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -35,10 +36,14 @@ function hasInvalidInput(inputList) {
 	return inputList.some((inputElement) => !inputElement.validity.valid);
 };
 
+function buttonDefaultState(button) {
+	button.disabled = true;
+	button.classList.add('popup__button-invalid');
+}
+
 function toggleButtonState(inputList, buttonElement, config) {
 	if (hasInvalidInput(inputList)) {
-		buttonElement.classList.add(config.inactiveButtonClass);
-		buttonElement.disabled = true;
+		buttonDefaultState(buttonElement, config.inactiveButtonClass);
 	} else {
 		buttonElement.classList.remove(config.inactiveButtonClass);
 		buttonElement.disabled = false;

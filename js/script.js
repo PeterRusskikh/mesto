@@ -1,4 +1,5 @@
-import initialCards from './ArrayCards.js'
+import initialCards from './arrayCards.js'
+import buttonDefaultState from './validate.js'
 
 const buttonEdit = document.querySelector('.profile__button-edit');
 const popupProfile = document.querySelector('#popupProfile');
@@ -53,7 +54,7 @@ function handleFormSubmitProfile(evt) {
 	evt.preventDefault();
 	profileName.textContent = formProfileInputName.value;
 	profileJob.textContent = formProfileInputJob.value;
-
+	buttonDefaultState(evt.submitter);
 	closePopup(popupProfile);
 };
 
@@ -90,6 +91,7 @@ function renderCard({ name, link }) {
 elements.append(...initialCards.map(renderCard));
 
 buttonAdd.addEventListener('click', () => {
+	popupFormCard.reset();
 	openPopup(popupCard);
 });
 
@@ -97,8 +99,7 @@ buttonAdd.addEventListener('click', () => {
 function handleFormSubmitCard(evt) {
 	evt.preventDefault();
 	elements.prepend(renderCard({ name: popupCardName.value, link: popupCardUrl.value }));
-	popupCardName.value = '';
-	popupCardUrl.value = '';
+	buttonDefaultState(evt.submitter);
 	closePopup(popupCard);
 };
 popupFormCard.addEventListener('submit', handleFormSubmitCard);
