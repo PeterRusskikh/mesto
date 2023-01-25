@@ -110,4 +110,3 @@ function fullImgAdd(link, name) {
 	fullImage.src = link;
 	fullNameImage.textContent = name;
 };
-
