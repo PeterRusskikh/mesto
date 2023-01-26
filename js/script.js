@@ -1,5 +1,6 @@
 import initialCards from './arrayCards.js'
-import buttonDefaultState from './validate.js'
+import { buttonDefaultState } from './validate.js'
+import { Card } from './card.js'
 
 const buttonEdit = document.querySelector('.profile__button-edit');
 const popupProfile = document.querySelector('#popupProfile');
@@ -61,33 +62,40 @@ function handleFormSubmitProfile(evt) {
 popupFormProfileEdit.addEventListener('submit', handleFormSubmitProfile);
 // ----Sprint 5----------------------------------------------------------------
 // получаем содержимое
-const templateCard = document.querySelector('#elements').content;
+
 
 function renderCard({ name, link }) {
-	// клонируем содержимое тега template
-	const elementClone = templateCard.querySelector('.element').cloneNode(true);
-	// наполняем содержимым
-	const elementTitle = elementClone.querySelector('.element__title');
-	elementTitle.textContent = name;
-	const elementImage = elementClone.querySelector('.element__image');
-	elementImage.src = link;
-	// корзина
-	const buttonTrash = elementClone.querySelector('.element__button-trash');
-	buttonTrash.addEventListener('click', () => {
-		elementClone.remove();
-	});
-	// кнопка лайк
-	const buttonLike = elementClone.querySelector('.element__button-like');
-	buttonLike.addEventListener('click', () => {
-		buttonLike.classList.toggle('element__button-like_active');
-	});
+	const card = new Card();
+	const element = card.create();
+
+	card.elementTitle.textContent = name;
+	card.elementImage.src = link;
+	card.setListeners();
 	// откываем картинку в полный экран
-	elementImage.addEventListener('click', () => {
+	card.elementImage.addEventListener('click', () => {
 		openPopup(fullImg);
 		fullImgAdd(link, name);
 	});
-	return elementClone;
+
+	// добавляем карточку
+	function handleFormSubmitCard(evt) {
+		evt.preventDefault();
+		elements.prepend(renderCard({ name: popupCardName.value, link: popupCardUrl.value }));
+		buttonDefaultState(evt.submitter);
+		closePopup(popupCard);
+	};
+	popupFormCard.addEventListener('submit', handleFormSubmitCard);
+	// передаем данные для открытия картинки на полный экран
+	function fullImgAdd(link, name) {
+		const fullNameImage = document.querySelector('.full-img__name-image');
+		const fullImage = document.querySelector('.full-img__image');
+		fullImage.src = link;
+		fullNameImage.textContent = name;
+	};
+
+	return element;
 }
+
 elements.append(...initialCards.map(renderCard));
 
 buttonAdd.addEventListener('click', () => {
@@ -95,18 +103,4 @@ buttonAdd.addEventListener('click', () => {
 	openPopup(popupCard);
 });
 
-// добавляем карточку
-function handleFormSubmitCard(evt) {
-	evt.preventDefault();
-	elements.prepend(renderCard({ name: popupCardName.value, link: popupCardUrl.value }));
-	buttonDefaultState(evt.submitter);
-	closePopup(popupCard);
-};
-popupFormCard.addEventListener('submit', handleFormSubmitCard);
-// передаем данные для открытия картинки на полный экран
-function fullImgAdd(link, name) {
-	const fullNameImage = document.querySelector('.full-img__name-image');
-	const fullImage = document.querySelector('.full-img__image');
-	fullImage.src = link;
-	fullNameImage.textContent = name;
-};
+

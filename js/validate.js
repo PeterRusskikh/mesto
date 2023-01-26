@@ -1,4 +1,4 @@
-export default buttonDefaultState;
+export { buttonDefaultState };
 
 const validationConfig = {
 	formSelector: '.popup__form',
