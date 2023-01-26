@@ -1,6 +1,7 @@
-import initialCards from './arrayCards.js'
-import { buttonDefaultState } from './validate.js'
-import { Card } from './card.js'
+import { initialCards } from './arrayCards.js'
+import buttonDefaultState from './validate.js'
+import { Card } from './Card.js'
+export { openPopupImage };
 
 const buttonEdit = document.querySelector('.profile__button-edit');
 const popupProfile = document.querySelector('#popupProfile');
@@ -14,7 +15,6 @@ const popupCardName = document.querySelector('.popup__input-card-name');
 const popupCardUrl = document.querySelector('.popup__input-card-url');
 const popupFormCard = document.querySelector('.popup__form-card');
 const elements = document.querySelector('.elements');
-const fullImg = document.querySelector('.full-img');
 const buttonAdd = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup-card');
 // Закрытие, открытие попапов--------------------------------
@@ -42,14 +42,12 @@ popups.forEach((popup) => {
 		}
 	});
 });
-
 // ----popupProfile---------------------------------------------
 buttonEdit.addEventListener('click', () => {
 	openPopup(popupProfile);
 	formProfileInputName.value = profileName.textContent;
 	formProfileInputJob.value = profileJob.textContent;
 });
-
 // Перемещаем введенные данные в профиль
 function handleFormSubmitProfile(evt) {
 	evt.preventDefault();
@@ -58,49 +56,39 @@ function handleFormSubmitProfile(evt) {
 	buttonDefaultState(evt.submitter);
 	closePopup(popupProfile);
 };
-
 popupFormProfileEdit.addEventListener('submit', handleFormSubmitProfile);
-// ----Sprint 5----------------------------------------------------------------
-// получаем содержимое
 
-
-function renderCard({ name, link }) {
-	const card = new Card();
-	const element = card.create();
-
-	card.elementTitle.textContent = name;
-	card.elementImage.src = link;
-	card.setListeners();
-	// откываем картинку в полный экран
-	card.elementImage.addEventListener('click', () => {
-		openPopup(fullImg);
-		fullImgAdd(link, name);
-	});
-
-	// добавляем карточку
-	function handleFormSubmitCard(evt) {
-		evt.preventDefault();
-		elements.prepend(renderCard({ name: popupCardName.value, link: popupCardUrl.value }));
-		buttonDefaultState(evt.submitter);
-		closePopup(popupCard);
-	};
-	popupFormCard.addEventListener('submit', handleFormSubmitCard);
-	// передаем данные для открытия картинки на полный экран
-	function fullImgAdd(link, name) {
-		const fullNameImage = document.querySelector('.full-img__name-image');
-		const fullImage = document.querySelector('.full-img__image');
-		fullImage.src = link;
-		fullNameImage.textContent = name;
-	};
-
-	return element;
-}
-
-elements.append(...initialCards.map(renderCard));
-
+// ----card---------------------------------------------
 buttonAdd.addEventListener('click', () => {
 	popupFormCard.reset();
 	openPopup(popupCard);
 });
-
-
+// получаем содержимое
+function renderCard(item) {
+	// Создадим экземпляр карточки
+	const card = new Card(item, "#elements");
+	// Создаём карточку и возвращаем наружу
+	const cardElement = card.generateCard();
+	return cardElement;
+}
+// добавляем карточку
+function handleFormSubmitCard(evt) {
+	evt.preventDefault();
+	const item = {};
+	item.name = popupCardName.value;
+	item.link = popupCardUrl.value;
+	elements.prepend(renderCard(item));
+	closePopup(popupCard);
+};
+// добавляем в DOM
+initialCards.forEach((item) => {
+	elements.prepend(renderCard(item));
+});
+popupFormCard.addEventListener('submit', handleFormSubmitCard);
+// передаем данные для открытия картинки на полный экран
+function openPopupImage(name, link) {
+	const fullImg = document.querySelector('.full-img');
+	document.querySelector('.full-img__name-image').textContent = name;
+	document.querySelector('.full-img__image').src = link;
+	openPopup(fullImg);
+};

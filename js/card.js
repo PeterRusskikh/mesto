@@ -1,46 +1,57 @@
+import { initialCards } from './arrayCards.js'
+import { openPopupImage } from './script.js'
+
 export class Card {
-	template;
-	element;
-	elementTitle;
-	elementImage;
-	buttonTrash;
-	buttonLike;
-
-
-	constructor(name, link, template) {
-		this._name = name;
-		this._link = link;
-		this._template = template;
-		this.getTemplate() = template;
+	constructor(data, templateSelector) {
+		this._name = data.name;
+		this._link = data.link;
+		this._templateSelector = templateSelector;
 	}
-
-	getTemplate() {
-		this.template = document
-			.querySelector('#elements')
-			.content.querySelector('.element');
+	_getTemplate() {
+		const cardElement = document
+			.querySelector(this._templateSelector)
+			.content
+			.querySelector('.element')
+			.cloneNode(true);
+		return cardElement;
 	}
-	create() {
-		this.element = this.template.cloneNode(true);
-		this.elementTitle = this.element.querySelector('.element__title');
-		this.elementImage = this.element.querySelector('.element__image');
-		this.buttonTrash = this.element.querySelector('.element__button-trash');
-		this.buttonLike = this.element.querySelector('.element__button-like');
-
-
-
-
-		return this.element;
+	generateCard() {
+		// Запишем разметку в приватное поле _element. 
+		// Так у других элементов появится доступ к ней.
+		this._element = this._getTemplate();
+		this._setEventListeners();
+		// Добавим данные
+		this._element.querySelector('.element__title').textContent = this._name;
+		this._element.querySelector('.element__image').src = this._link;
+		// Вернём элемент наружу
+		return this._element;
 	}
-
-	setListeners() {
-		// корзина
-		this.buttonTrash.addEventListener('click', () => {
-			this.element.remove();
-		});
-		// кнопка лайк
-		this.buttonLike.addEventListener('click', () => {
-			this.buttonLike.classList.toggle('element__button-like_active');
-		});
-
+	_setEventListeners() {
+		this._element
+			.querySelector('.element__button-trash')
+			.addEventListener("click", () => {
+				this._TrashButton();
+			});
+		this._element
+			.querySelector('.element__button-like')
+			.addEventListener('click', () => {
+				this._LikeButton();
+			});
+		this._element
+			.querySelector('.element__image')
+			.addEventListener('click', () => {
+				this._FullScreenImage();
+			})
+	}
+	_TrashButton() {
+		this._element.remove();
+	}
+	_LikeButton() {
+		this._element
+			.querySelector('.element__button-like')
+			.classList.toggle('element__button-like_active');
+	}
+	_FullScreenImage() {
+		openPopupImage(this._name, this._link);
 	}
 }

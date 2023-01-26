@@ -1,4 +1,4 @@
-export { buttonDefaultState };
+export default buttonDefaultState;
 
 const validationConfig = {
 	formSelector: '.popup__form',
@@ -70,9 +70,4 @@ function enableValidation(config) {
 		setEventListener(formElement, config);
 	});
 };
-
 enableValidation(validationConfig);
-
-
-
-
