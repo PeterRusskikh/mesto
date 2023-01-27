@@ -1,4 +1,3 @@
-
 import { openPopupImage } from './script.js'
 
 export class Card {
@@ -54,4 +53,4 @@ export class Card {
 	_FullScreenImage() {
 		openPopupImage(this._name, this._link);
 	}
-}
+};

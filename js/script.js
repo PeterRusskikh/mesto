@@ -15,7 +15,6 @@ const popupCardName = document.querySelector('.popup__input-card-name');
 const popupCardUrl = document.querySelector('.popup__input-card-url');
 const popupFormCard = document.querySelector('.popup__form-card');
 const elements = document.querySelector('.elements');
-const fullImg = document.querySelector('.full-img');
 const buttonAdd = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup-card');
 // Закрытие, открытие попапов--------------------------------
@@ -43,14 +42,12 @@ popups.forEach((popup) => {
 		}
 	});
 });
-
 // ----popupProfile---------------------------------------------
 buttonEdit.addEventListener('click', () => {
 	openPopup(popupProfile);
 	formProfileInputName.value = profileName.textContent;
 	formProfileInputJob.value = profileJob.textContent;
 });
-
 // Перемещаем введенные данные в профиль
 function handleFormSubmitProfile(evt) {
 	evt.preventDefault();
@@ -59,10 +56,8 @@ function handleFormSubmitProfile(evt) {
 	buttonDefaultState(evt.submitter);
 	closePopup(popupProfile);
 };
-
 popupFormProfileEdit.addEventListener('submit', handleFormSubmitProfile);
-// ----Sprint 5----------------------------------------------------------------
-// получаем содержимое
+
 // ----card---------------------------------------------
 buttonAdd.addEventListener('click', () => {
 	popupFormCard.reset();
@@ -97,5 +92,3 @@ function openPopupImage(name, link) {
 	document.querySelector('.full-img__image').src = link;
 	openPopup(fullImg);
 };
-
-
