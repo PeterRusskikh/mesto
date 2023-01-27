@@ -70,4 +70,9 @@ function enableValidation(config) {
 		setEventListener(formElement, config);
 	});
 };
+
 enableValidation(validationConfig);
+
+
+
+

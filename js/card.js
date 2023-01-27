@@ -1,4 +1,4 @@
-import { initialCards } from './arrayCards.js'
+
 import { openPopupImage } from './script.js'
 
 export class Card {
