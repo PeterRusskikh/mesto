@@ -42,27 +42,15 @@
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
   </div>
-
-
   <div class="popup popup-card">
     <div class="popup__container">
       <h3 class="popup__title popup__title-card">Новое место</h3>
-
-
       <form name="popup-card" class="popup__form popup__form-card" method="get" novalidate>
-
-
           <input type="text" name="name" id="name" class="popup__input popup__input-card-name" value="" placeholder="Название" minlength="2" maxlength="30" required>
           <span class="name-error popup__input-error">вы пропустили поле.</span>
-
-
-
           <input type="url" name="url" id="url" class="popup__input popup__input-card-url" value="" placeholder="Ссылка на картинку" required>
           <span class="url-error popup__input-error">вы пропустили поле.</span>
-
-        
         <button class="button popup__button popup__button-save popup__button-invalid" type="submit">Создать</button>
-
       </form>
       <button class="button popup__button-close popup__button-close-card" type="button"></button>
     </div>
@@ -70,19 +58,11 @@
   <div class="popup" id="popupProfile">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
-
       <form name="profile-form" action="submit" id="popupFormProfileEdit" class="popup__form" method="get" novalidate>
-        
-
           <input type="text" name="username" id="username" class="popup__input popup__input_text_name" value="" placeholder="Введите имя" minlength="2" maxlength="40" required>
           <span class="username-error popup__input-error">вы пропустили поле.</span>
-
-        
-
           <input type="text" name="job" id="job" class="popup__input popup__input_text_job" value="" placeholder="Введите деятельность" minlength="2" maxlength="200" required>
           <span class="job-error popup__input-error">вы пропустили поле.</span>
-
-
         <button class="button popup__button popup__button-save popup__button-invalid" type="submit">Сохранить</button>
       </form>
       <button id="buttonCloseProfileEdit" class="button popup__button-close" type="button"></button>
@@ -100,7 +80,5 @@
     </div>
   </div>
   <script src="js/script.js" type="module"></script>
-
-
 </body>
 </html>

@@ -1,5 +1,5 @@
 import initialCards from './arrayCards.js'
-import buttonDefaultState from './validate.js'
+import { FormValidator, validationConfig } from './FormValidator.js';
 import { Card } from './Card.js'
 export { openPopupImage };
 
@@ -17,6 +17,7 @@ const popupFormCard = document.querySelector('.popup__form-card');
 const elements = document.querySelector('.elements');
 const buttonAdd = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup-card');
+
 // Закрытие, открытие попапов--------------------------------
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
@@ -43,21 +44,22 @@ popups.forEach((popup) => {
 	});
 });
 // ----popupProfile---------------------------------------------
-buttonEdit.addEventListener('click', () => {
-	openPopup(popupProfile);
+function renderEditProfile() {
 	formProfileInputName.value = profileName.textContent;
 	formProfileInputJob.value = profileJob.textContent;
+}
+buttonEdit.addEventListener('click', () => {
+	openPopup(popupProfile);
+	renderEditProfile();
 });
 // Перемещаем введенные данные в профиль
 function handleFormSubmitProfile(evt) {
 	evt.preventDefault();
 	profileName.textContent = formProfileInputName.value;
 	profileJob.textContent = formProfileInputJob.value;
-	buttonDefaultState(evt.submitter);
 	closePopup(popupProfile);
 };
 popupFormProfileEdit.addEventListener('submit', handleFormSubmitProfile);
-
 // ----card---------------------------------------------
 buttonAdd.addEventListener('click', () => {
 	popupFormCard.reset();
@@ -66,7 +68,7 @@ buttonAdd.addEventListener('click', () => {
 // получаем содержимое
 function renderCard(item) {
 	// Создадим экземпляр карточки
-	const card = new Card(item, "#elements");
+	const card = new Card(item, '#elements');
 	// Создаём карточку и возвращаем наружу
 	const cardElement = card.generateCard();
 	return cardElement;
@@ -92,3 +94,19 @@ function openPopupImage(name, link) {
 	document.querySelector('.full-img__image').src = link;
 	openPopup(fullImg);
 };
+// ----validate---------------------------------------------
+const validatorFormEditProfile = new FormValidator(validationConfig, popupFormProfileEdit);
+validatorFormEditProfile.enableValidation();
+
+const validatorFormAddContent = new FormValidator(validationConfig, popupFormCard);
+validatorFormAddContent.enableValidation();
+
+buttonEdit.addEventListener('click', function () {
+	openPopup(popupProfile);
+	renderEditProfile();
+}, false);
+
+buttonAdd.addEventListener('click', () => {
+	validatorFormAddContent.buttonDefaultState();
+	openPopup(popupCard);
+}, false);
