@@ -2,7 +2,7 @@ export class Card {
 	constructor(data, templateSelector, handleCardClick) {
 		this._name = data.name;
 		this._link = data.link;
-		this._alt = `Изображение ${data.name}`;
+		this._alt = `Изображение: ${this._name}`;
 		this._templateSelector = templateSelector;
 		this._element = this._getTemplate();
 		this._likeButton = this._element.querySelector('.element__button-like');
