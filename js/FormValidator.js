@@ -63,7 +63,13 @@ export class FormValidator {
     });
   }
   buttonDefaultState(_buttonElement) {
-    this._buttonElement.classList.add('popup__button-invalid');
+    this._buttonElement.classList.add(this._config.inactiveButtonClass);
     this._buttonElement.disabled = true;
+  }
+  resetValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(this._formElement, inputElement, this._validationConfig);
+    });
   }
 };

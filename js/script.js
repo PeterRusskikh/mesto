@@ -1,7 +1,7 @@
 import initialCards from './arrayCards.js'
 import { FormValidator, validationConfig } from './FormValidator.js';
 import { Card } from './Card.js'
-export { openPopupImage };
+
 
 const buttonEdit = document.querySelector('.profile__button-edit');
 const popupProfile = document.querySelector('#popupProfile');
@@ -17,17 +17,20 @@ const popupFormCard = document.querySelector('.popup__form-card');
 const elements = document.querySelector('.elements');
 const buttonAdd = document.querySelector('.profile__button-add');
 const popupCard = document.querySelector('.popup-card');
+const popupFullImg = document.querySelector('.full-img');
+const popupFullImgName = document.querySelector('.full-img__name-image');
+const popupFullImgImage = document.querySelector('.full-img__image');
 
 // Закрытие, открытие попапов--------------------------------
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
-	document.addEventListener('keydown', popupCloseEscKeybord);
+	document.addEventListener('keydown', closePopupEscKeybord);
 }
 function closePopup(popup) {
 	popup.classList.remove('popup_opened');
-	document.removeEventListener('keydown', popupCloseEscKeybord);
+	document.removeEventListener('keydown', closePopupEscKeybord);
 }
-function popupCloseEscKeybord(evt) {
+function closePopupEscKeybord(evt) {
 	if (evt.key === 'Escape') {
 		const popupOpened = document.querySelector('.popup_opened');
 		closePopup(popupOpened);
@@ -48,10 +51,6 @@ function renderEditProfile() {
 	formProfileInputName.value = profileName.textContent;
 	formProfileInputJob.value = profileJob.textContent;
 }
-buttonEdit.addEventListener('click', () => {
-	openPopup(popupProfile);
-	renderEditProfile();
-});
 // Перемещаем введенные данные в профиль
 function handleFormSubmitProfile(evt) {
 	evt.preventDefault();
@@ -59,19 +58,21 @@ function handleFormSubmitProfile(evt) {
 	profileJob.textContent = formProfileInputJob.value;
 	closePopup(popupProfile);
 };
-popupFormProfileEdit.addEventListener('submit', handleFormSubmitProfile);
 // ----card---------------------------------------------
-buttonAdd.addEventListener('click', () => {
-	popupFormCard.reset();
-	openPopup(popupCard);
-});
 // получаем содержимое
 function renderCard(item) {
 	// Создадим экземпляр карточки
-	const card = new Card(item, '#elements');
+	const card = new Card(item, '#elements', handleCardClick);
 	// Создаём карточку и возвращаем наружу
 	const cardElement = card.generateCard();
 	return cardElement;
+	// передаем данные для открытия картинки на полный экран
+	function handleCardClick(name, link) {
+		popupFullImgName.textContent = name;
+		popupFullImgImage.src = link;
+		popupFullImgImage.alt = name;
+		openPopup(popupFullImg);
+	};
 }
 // добавляем карточку
 function handleFormSubmitCard(evt) {
@@ -86,27 +87,25 @@ function handleFormSubmitCard(evt) {
 initialCards.forEach((item) => {
 	elements.prepend(renderCard(item));
 });
+
+popupFormProfileEdit.addEventListener('submit', handleFormSubmitProfile);
 popupFormCard.addEventListener('submit', handleFormSubmitCard);
-// передаем данные для открытия картинки на полный экран
-function openPopupImage(name, link) {
-	const fullImg = document.querySelector('.full-img');
-	document.querySelector('.full-img__name-image').textContent = name;
-	document.querySelector('.full-img__image').src = link;
-	openPopup(fullImg);
-};
+
 // ----validate---------------------------------------------
 const validatorFormEditProfile = new FormValidator(validationConfig, popupFormProfileEdit);
 validatorFormEditProfile.enableValidation();
 
-const validatorFormAddContent = new FormValidator(validationConfig, popupFormCard);
-validatorFormAddContent.enableValidation();
+const validatorFormAddCard = new FormValidator(validationConfig, popupFormCard);
+validatorFormAddCard.enableValidation();
 
-buttonEdit.addEventListener('click', function () {
+buttonEdit.addEventListener('click', () => {
 	openPopup(popupProfile);
+	validatorFormEditProfile.resetValidation();
+	validatorFormEditProfile.buttonDefaultState();
 	renderEditProfile();
-}, false);
-
+});
 buttonAdd.addEventListener('click', () => {
-	validatorFormAddContent.buttonDefaultState();
 	openPopup(popupCard);
-}, false);
+	validatorFormAddCard.resetValidation();
+	popupFormCard.reset();
+});
