@@ -1,9 +1,12 @@
 .popup__form {
-	margin: 50px 0 0 34px;
-	display: grid;
+  margin: 0;
+  padding: 0 22px;
+  display: flex;
+  flex-direction: column;
 }
-@media screen and (max-width: 555px) {
-	.popup__form {
-		margin: 75px 0 0 22px;
-	}
+
+@media screen and (min-width: 920px) {
+  .popup__form {
+    padding: 0 36px;
+  }
 }

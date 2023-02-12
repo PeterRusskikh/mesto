@@ -1,16 +1,16 @@
 .header__logo {
-	width: 142px;
-	height: 33px;
+  margin: 0;
+  margin-left: 27px;
+  display: block;
+  width: 103.74px;
+  height: 24.4px;
+  object-fit: cover;
 }
-@media screen and (max-width: 960px) {
-	.header__logo {
-		margin-left: 19px;
-	}
-}
-@media screen and (max-width: 320px) {
-	.header__logo {
-		width: 103.74px;
-		height: 24.4px;
-		margin-left: 27px;
-	}
+
+@media screen and (min-width: 620px) {
+  .header__logo {
+    margin-left: 7px;
+    width: 142px;
+    height: 33px;
+  }
 }
