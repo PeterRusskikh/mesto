@@ -22,7 +22,7 @@ export class FormValidator {
   _hideInputError(inputElement) {
     if (!this._errorElement) return;
     inputElement.classList.remove(this._inputErrorClass);
-    this._errorElement.textContent = "";
+    this._errorElement.textContent = '';
     this._errorElement.classList.remove(this._errorClass);
   }
   _checkInputValidity(inputElement) {
@@ -49,7 +49,7 @@ export class FormValidator {
   _setEventListeners() {
     this._toggleButtonState();
     this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
+      inputElement.addEventListener('input', () => {
         this._errorElement = this._formElement.querySelector(
           `.${inputElement.name}-input-error`
         );
@@ -60,7 +60,7 @@ export class FormValidator {
   }
   enableValidation() {
     this._setEventListeners();
-    this._formElement.addEventListener("submit", (e) => {
+    this._formElement.addEventListener('submit', (e) => {
       e.preventDefault();
     });
   }

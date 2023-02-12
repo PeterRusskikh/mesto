@@ -18,7 +18,7 @@ export class Section {
   }
 
   clear() {
-    this._container.innerHTML = "";
+    this._container.innerHTML = '';
   }
 
   // метод, который отвечает за отрисовку всех элементов
