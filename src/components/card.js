@@ -1,4 +1,3 @@
-
 export class Card {
   constructor({ name, link }, templateSelector, handleCardClick) {
     this._title = name;

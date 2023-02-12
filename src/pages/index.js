@@ -74,13 +74,12 @@ popupEdit.setEventListeners();
 buttonEditProfile.addEventListener('click', () => {
   popupEdit.open();
   popupEdit.setInputsValues(userInfo.getUserInfo());
-  validatorFormEditProfile.hideInputErr();
+  validatorFormEditProfile.resetValidation();
 }
 );
 // Попап добавления карточек
 buttonAddContent.addEventListener('click', () => {
   popupAdd.open();
-  validatorFormAddContent.disableSubmitButton();
-  validatorFormAddContent.hideInputErr();
+  validatorFormAddContent.resetValidation();
 }
 );
