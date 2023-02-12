@@ -63,7 +63,7 @@ const validatorFormEditProfile = new FormValidator(validationConfig, formEditPro
 validatorFormEditProfile.enableValidation();
 const validatorFormAddContent = new FormValidator(validationConfig, formAddContent);
 validatorFormAddContent.enableValidation();
-// Для каждого попапа создавайте свой экземпляр класса PopupWithForm
+
 const popupImage = new PopupWithImage(popupShowImage);
 popupImage.setEventListeners();
 const popupAdd = new PopupWithForm(popupAddContent, handleSubmitFormAddContent);

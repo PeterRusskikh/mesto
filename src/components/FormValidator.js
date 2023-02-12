@@ -25,6 +25,15 @@ export class FormValidator {
     this._errorElement.textContent = '';
     this._errorElement.classList.remove(this._errorClass);
   }
+  hideInputErr() {
+    this._toggleButtonState(this._buttonElement);
+    this._inputList.forEach((input) => {
+      this._errorElement = this._formElement.querySelector(
+        `.${input.name}-input-error`
+      );
+      this._hideInputError(input);
+    });
+  }
   _checkInputValidity(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
@@ -67,14 +76,5 @@ export class FormValidator {
   disableSubmitButton(_buttonElement, _formElement) {
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.disabled = true;
-  }
-  hideInputErr() {
-    this._toggleButtonState(this._buttonElement);
-    this._inputList.forEach((input) => {
-      this._errorElement = this._formElement.querySelector(
-        `.${input.name}-input-error`
-      );
-      this._hideInputError(input);
-    });
   }
 }

@@ -23,7 +23,6 @@ export class Card {
     this._contentTitle.textContent = this._title;
     this._contentImage.src = this._image;
     this._contentImage.alt = 'Изображение: ' + this._title;
-    // Установим обработчики
     this._setEventListeners();
     // Вернём наружу
     return this._element;
