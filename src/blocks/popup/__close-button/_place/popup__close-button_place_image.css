@@ -2,7 +2,6 @@
   top: -36px;
   right: 0;
 }
-
 @media screen and (min-width: 920px) {
   .popup__close-button_place_image {
     top: -40px;

@@ -9,7 +9,6 @@
   box-shadow: none;
   border-radius: 0;
 }
-
 @media screen and (min-width: 920px) {
   .popup__container_type_image {
     padding-top: 0;

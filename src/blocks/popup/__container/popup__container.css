@@ -9,7 +9,6 @@
   border-radius: 10px;
   transition: 0.5s all;
 }
-
 @media screen and (min-width: 920px) {
   .popup__container {
     padding-top: 34px;
