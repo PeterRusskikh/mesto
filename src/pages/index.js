@@ -1,85 +1,172 @@
 import './index.css';
-
+import { Api } from '../components/Api.js';
 import { Card } from '../components/Card.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { PopupConfirm } from '../components/PopupConfirm.js';
 import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo.js';
 import {
-  initialCards,
-  validationConfig,
   popupEditProfile,
   popupAddContent,
   popupShowImage,
-  nameProfile,
-  jobProfile,
+  popupUpdateAvatar,
+  popupDelContent,
   buttonEditProfile,
   buttonAddContent,
-  contentList,
+  buttonUpdateAvatar,
+  nameProfile,
+  aboutProfile,
+  avatarProfile,
+  formUpdateAvatar,
+  validationConfig,
+  contentListNode,
   formEditProfile,
   formAddContent,
 } from '../utils/constants.js';
-import { Section } from '../components/Section.js';
-import { PopupWithImage } from '../components/PopupWithImage.js';
-import { PopupWithForm } from '../components/PopupWithForm.js';
-import { UserInfo } from '../components/UserInfo.js';
-// Добавление карточек из массива
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = createCard(item);
-      // Добавляем в DOM
-      cardList.addItem(card);
-    },
-  },
-  contentList
-);
-cardList.renderItems();
-// создаем экземпляр класса
+let userId;
+
 function createCard(data) {
-  // Создадим экземпляр карточки
-  const card = new Card(data, '#content__card-template', showPopupWithImage);
-  // Создаём и возвращаем наружу
-  const cardElement = card.generateCard();
-  return cardElement;
+  const card = new Card(
+    data,
+    '#content__card-template',
+    showPopupWithImage,
+    userId,
+    async () => {
+      try {
+        const res = await api.addLike(data._id);
+        card.like();
+        card.setLikesCount(res);
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    async () => {
+      try {
+        const res = await api.removeLike(data._id);
+        card.dislike();
+        card.setLikesCount(res);
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    () => {
+      popupConfirm.open(card);
+    }
+  );
+  return card.generateCard();
 }
-//Открытие увеличенной картинки
 function showPopupWithImage(name, link) {
   popupImage.open(name, link);
 }
-// Редактирование профиля
-function handleSubmitFormEditProfile(data) {
-  userInfo.setUserInfo(data);
+async function handleSubmitFormEditProfile(data) {
+  try {
+    const userData = await api.editUserInfo(data);
+    currentUser.setUserInfo(userData);
+    popupEdit.close();
+  } catch (err) {
+    return console.log(err);
+  }
 }
-// Форма добавления карточек
-function handleSubmitFormAddContent(obj) {
-  const card = createCard(obj);
-  cardList.addItem(card);
-  popupAdd.close();
+async function handleSubmitFormUpdateAvatar(data) {
+  try {
+    const userData = await api.updateUserAvatar(data);
+    currentUser.setUserInfo(userData);
+    popupAvatar.close();
+  } catch (err) {
+    return console.log(err);
+  }
 }
-const userInfo = new UserInfo({
-  name: nameProfile,
-  job: jobProfile,
-});
+async function handleSubmitFormAddContent(data) {
+  try {
+    const newCard = await api.addCard(data);
+    cardList.addItem(createCard(newCard));
+    popupAdd.close();
+  } catch (err) {
+    return console.log(err);
+  }
+}
+buttonEditProfile.addEventListener(
+  'click',
+  () => {
+    popupEdit.open();
+    popupEdit.setInputsValues(currentUser.getUserInfo());
+    validatorFormEditProfile.hideInputErros();
+  },
+  false
+);
+buttonUpdateAvatar.addEventListener(
+  'click',
+  () => {
+    popupAvatar.open();
+    validatorFormUpdateAvatar.hideInputErros();
+  },
+  false
+);
+buttonAddContent.addEventListener(
+  'click',
+  () => {
+    popupAdd.open();
+    validatorFormAddContent.hideInputErros();
+  },
+  false
+);
+
 const validatorFormEditProfile = new FormValidator(validationConfig, formEditProfile);
 validatorFormEditProfile.enableValidation();
 const validatorFormAddContent = new FormValidator(validationConfig, formAddContent);
 validatorFormAddContent.enableValidation();
+const validatorFormUpdateAvatar = new FormValidator(validationConfig, formUpdateAvatar);
+validatorFormUpdateAvatar.enableValidation();
 
 const popupImage = new PopupWithImage(popupShowImage);
-popupImage.setEventListeners();
 const popupAdd = new PopupWithForm(popupAddContent, handleSubmitFormAddContent);
-popupAdd.setEventListeners();
 const popupEdit = new PopupWithForm(popupEditProfile, handleSubmitFormEditProfile);
+const popupAvatar = new PopupWithForm(popupUpdateAvatar, handleSubmitFormUpdateAvatar);
+const popupConfirm = new PopupConfirm(popupDelContent, async (card) => {
+  api
+    .deleteCard(card._id)
+    .then(() => {
+      card.remove();
+      popupConfirm.close();
+    })
+    .catch((err) => console.log(err));
+});
+
+popupConfirm.setEventListeners();
+popupImage.setEventListeners();
+popupAdd.setEventListeners();
 popupEdit.setEventListeners();
-// Попап редактирования профиля
-buttonEditProfile.addEventListener('click', () => {
-  popupEdit.open();
-  popupEdit.setInputsValues(userInfo.getUserInfo());
-  validatorFormEditProfile.resetValidation();
-}
+popupAvatar.setEventListeners();
+
+const currentUser = new UserInfo({
+  name: nameProfile,
+  about: aboutProfile,
+  avatar: avatarProfile,
+});
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
+  headers: {
+    authorization: 'e91c4804-c3aa-4575-a63a-f03f4cdae8b0',
+    'Content-Type': 'application/json',
+  },
+});
+
+const cardList = new Section(
+  {
+    renderer: (data) => {
+      const card = createCard(data);
+      cardList.addItem(card);
+    },
+  },
+  contentListNode
 );
-// Попап добавления карточек
-buttonAddContent.addEventListener('click', () => {
-  popupAdd.open();
-  validatorFormAddContent.resetValidation();
-}
-);
+Promise.all([api.getCurrentUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    currentUser.setUserInfo(userData);
+    userId = userData._id;
+    cardList.renderItems(cards.reverse());
+  })
+  .catch((err) => console.log(err));

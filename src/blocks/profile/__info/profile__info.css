@@ -6,6 +6,7 @@
   justify-content: center;
   row-gap: 0;
 }
+
 @media screen and (min-width: 920px) {
   .profile__info {
     margin: 0 auto 0 0;

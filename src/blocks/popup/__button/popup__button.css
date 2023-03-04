@@ -14,9 +14,11 @@
   border: none;
   transition: opacity 0.3s ease-in;
 }
+
 .popup__button:hover {
   opacity: 0.8;
 }
+
 @media screen and (min-width: 920px) {
   .popup__button {
     margin: 18px auto 37px;

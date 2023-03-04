@@ -1,4 +1,3 @@
-// класс Popup отвечает за открытие и закрытие попапа
 export class Popup {
   constructor(popup) {
     this._popup = popup;

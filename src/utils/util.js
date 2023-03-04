@@ -6,19 +6,16 @@ export function openPopup(currentPopup) {
   currentPopup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
 }
-
 export function closePopup(currentPopup) {
   currentPopup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupByEsc);
 }
-
 export function openPopupImage(srcValue, titleValue) {
   popupImageElement.src = srcValue;
   popupImageElement.alt = 'Фотография ' + titleValue;
   popupImageCaption.textContent = titleValue;
   openPopup(popupImage);
 }
-
 export const closePopupByEsc = (event) => {
   if (event.key === 'Escape') {
     const currentPopup = document.querySelector('.popup_opened');

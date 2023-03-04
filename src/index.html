@@ -10,12 +10,15 @@
       <img src="<%=require('./images/logo.svg')%>" alt="Логотип" class="header__logo">
     </header>
     <main>
-      <section class="profile" aria-label="Профиль">
-        <img src="<%=require('./images/profile__avatar.png')%>" alt="Аватар" class="profile__avatar">
+      <section class="profile">
+        <div class="profile__avatar-wrapper">
+          <button class="profile__avatar-button"></button>
+          <img class="profile__avatar">
+        </div>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button type="button" class="button profile__edit-button" aria-label="Кнопка редиктирования профиля"></button>
-          <p class="profile__job">Исследователь океана</p>
+          <h1 class="profile__name"></h1>
+          <button type="button" class="button profile__edit-button"></button>
+          <p class="profile__about"></p>
         </div>
         <button type="button" class="button profile__add-button"></button>
       </section>
@@ -26,35 +29,35 @@
     <footer class="footer">
       <p class="footer__text">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup popup-card">
+    <div class="popup popup_type_add-content">
       <div class="popup__container" id="popup__container_type_add-content">
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form popup__form-card" name="popup-card" novalidate>
+        <form class="popup__form popup__form_type_add-content" name="addContent" novalidate>
           <input class="popup__input popup__input_type_name" type="text" name="name" value="" placeholder="Название" required minlength="2" maxlength="30">
           <span class="popup__error name-input-error">вы пропустили поле.</span>
           <input class="popup__input popup__input_type_link" type="url" name="link" value="" placeholder="Ссылка на картинку" required>
           <span class="popup__error link-input-error">вы пропустили поле.</span>
           <button class="button popup__button popup__save-content-button" type="submit">Сохранить</button>
         </form>
-        <button type="button" class="button popup__close-button popup__close-button_place_add-content"></button>
+        <button type="button" class="button popup__close-button popup__close-button_place_add-content" aria-label="Кнопка закрытия всплывающего окна"></button>
       </div>
     </div>
-    <div class="popup popup-profile">
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container" id="popup__container_type_edit-profile">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form popup__form-profile" name="popup-profile" novalidate>
+        <form class="popup__form popup__form_type_edit-profile" name="editProfile" novalidate>
           <input class="popup__input popup__input_type_name" type="text" name="name" value="Имя" placeholder="Введите имя" required minlength="2" maxlength="40">
           <span class="popup__error name-input-error">вы пропустили поле.</span>
-          <input class="popup__input popup__input_type_job" type="text" name="job" value="Профессия" placeholder="Введите деятельность" required minlength="2" maxlength="200">
-          <span class="popup__error job-input-error">вы пропустили поле.</span>
+          <input class="popup__input popup__input_type_about" type="text" name="about" value="Профессия" placeholder="Введите деятельность" required minlength="2" maxlength="200">
+          <span class="popup__error about-input-error">вы пропустили поле.</span>
           <button class="button popup__button popup__save-profile-button" type="submit">Сохранить</button>
         </form>
         <button type="button" class="button popup__close-button popup__close-button_place_edit-profile"></button>
       </div>
     </div>
-    <div class="popup popup-image">
+    <div class="popup popup_type_image">
       <div class="popup__container popup__container_type_image" id="popup__container_type_image">
-        <img src="#" alt="Картинка." class="popup__image">
+        <img class="popup__image">
         <h2 class="popup__caption"></h2>
         <button type="button" class="button popup__close-button popup__close-button_place_image"></button>
       </div>
@@ -62,14 +65,37 @@
     <template id="content__card-template">
       <li>
         <article class="content__card">
-          <img src="#" alt="Изображение" class="content__image"/>
+          <img src="<%=require('./images/img__dombay.png')%>" alt="Изображение, загруженное пользователем" class="content__image">
           <div class="content__info">
             <h2 class="content__title"></h2>
-            <button type="button" class="button content__like-button"></button>
+            <div class="content__like-box">
+              <button type="button" class="button content__like-button"></button>
+              <span class="content__like-count"></span>
+            </div>
           </div>
           <button type="button" class="button content__delete-button"></button>
         </article>
       </li>
-    </template> 
+    </template>
+    <div class="popup popup_type_update-avatar">
+      <div class="popup__container" id="popup__container_type_update-avatar">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="popup__form popup__form_type_update-avatar" name="updateAvatar" novalidate>
+          <input class="popup__input popup__input_type_avatar" type="url" name="avatar" value="" placeholder="Ссылка на аватар" required>
+          <span class="popup__error avatar-input-error"></span>
+          <button class="button popup__button popup__update-avatar-button" type="submit">Сохранить</button>
+        </form>
+        <button type="button" class="button popup__close-button popup__close-button_place_update-avatar" aria-label="Кнопка закрытия всплывающего окна"></button>
+      </div>
+    </div>
+    <div class="popup popup_type_del-content">
+      <div class="popup__container" id="popup__container_type_del-content">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form class="popup__form popup__form_type_del-content" name="delContent" novalidate>
+          <button class="button popup__button popup__del-content-button" type="submit">Да</button>
+        </form>
+        <button type="button" class="button popup__close-button popup__close-button_place_del-content"></button>
+      </div>
+    </div>
   </body>
 </html>
